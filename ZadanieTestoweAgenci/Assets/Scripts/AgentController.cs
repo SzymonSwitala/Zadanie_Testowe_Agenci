@@ -108,7 +108,7 @@ public class AgentController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameManager.Instance.informations.SetNewAgent(this);
+            GameManager.Instance.informations.SelectAgent(this);
         }
     }
 
