@@ -8,6 +8,7 @@ public class AgentController : MonoBehaviour
     public int healthPoints = 3;
     [SerializeField] private float moveCooldown;
     [SerializeField] private GameObject SelectEffect;
+    [SerializeField] private FlashEffect flashEffect;
     enum Directions
     {
         North,
@@ -92,12 +93,17 @@ public class AgentController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GetHealthPoint();
+        if (other.tag=="Agent")
+        {
+            GetHealthPoint();
+        }
+     
     }
 
     public void GetHealthPoint()
     {
         healthPoints--;
+        flashEffect.Flash();
         if (healthPoints <= 0)
         {
             Destroy(gameObject);

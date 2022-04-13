@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637854681220295294
-    m_Hash: 1019534507
+      ticks: 637854828546689786
+    m_Hash: 3214738592
   m_LockFileStatus:
     m_FilePath: D:/Projects of My Games/Zadanie_Testowe_Agenci/ZadanieTestoweAgenci/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637854681220818196
-    m_Hash: 1819441136
+      ticks: 637854828546689786
+    m_Hash: 2905288084
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
