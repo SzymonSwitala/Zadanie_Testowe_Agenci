@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class AgentController : MonoBehaviour
 {
-    [SerializeField] private string agentName;
-    [SerializeField] private int healthPoints = 3;
+    public string agentName;
+    public int healthPoints = 3;
     [SerializeField] private float moveCooldown;
+    [SerializeField] private GameObject SelectEffect;
     enum Directions
     {
         North,
@@ -19,7 +20,7 @@ public class AgentController : MonoBehaviour
     {
         agentName = RandomName();
         StartCoroutine(Moving());
-    
+
     }
     private string RandomName()
     {
@@ -107,8 +108,18 @@ public class AgentController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Selected " + agentName);
-            GameManager.Instance.informations.Set(agentName, healthPoints);
+            GameManager.Instance.informations.SetNewAgent(this);
         }
+    }
+
+    public void Select()
+    {
+        SelectEffect.SetActive(true);
+      
+    }
+
+    public void Unselect()
+    {
+        SelectEffect.SetActive(false);
     }
 }

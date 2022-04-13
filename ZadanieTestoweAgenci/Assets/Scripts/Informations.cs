@@ -4,10 +4,35 @@ public class Informations : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI healthPointsText;
-    
-    public void Set(string name,int healthPoints)
+    private AgentController currentSelectedAgent;
+    public void SetNewAgent(AgentController agent)
     {
-        nameText.text = name;
-        healthPointsText.text = ""+healthPoints;
+        if (currentSelectedAgent != null)
+        {
+            currentSelectedAgent.Unselect();
+        }
+
+        currentSelectedAgent = agent;
+        currentSelectedAgent.Select();
+        gameObject.SetActive(true);
+
     }
+    void Set()
+    {
+        nameText.text = currentSelectedAgent.agentName;
+        healthPointsText.text = "" + currentSelectedAgent.healthPoints;
+    }
+    private void Update()
+    {
+        if (currentSelectedAgent != null)
+        {        
+            Set();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+
 }
