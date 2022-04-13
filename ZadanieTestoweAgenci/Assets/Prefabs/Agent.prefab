@@ -212,6 +212,8 @@ MonoBehaviour:
   moveCooldown: 1
   SelectEffect: {fileID: 1088546600974073562}
   flashEffect: {fileID: 3551985699741222671}
+  hitSound: {fileID: 8300000, guid: 680dcde70ff52064eb2e0f8ec0d7bb72, type: 3}
+  selectSound: {fileID: 8300000, guid: 96f8fe3599b599649bc42242709aaec3, type: 3}
 --- !u!54 &1534931612598835296
 Rigidbody:
   m_ObjectHideFlags: 0

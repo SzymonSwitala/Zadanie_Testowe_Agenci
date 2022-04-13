@@ -9,6 +9,8 @@ public class AgentController : MonoBehaviour
     [SerializeField] private float moveCooldown;
     [SerializeField] private GameObject SelectEffect;
     [SerializeField] private FlashEffect flashEffect;
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField] private AudioClip selectSound;
     enum Directions
     {
         North,
@@ -104,6 +106,7 @@ public class AgentController : MonoBehaviour
     {
         healthPoints--;
         flashEffect.Flash();
+        SoundManager.PlaySound(hitSound);
         if (healthPoints <= 0)
         {
             Destroy(gameObject);
@@ -114,6 +117,7 @@ public class AgentController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            SoundManager.PlaySound(selectSound);
             GameManager.Instance.informations.SelectAgent(this);
         }
     }
