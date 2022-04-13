@@ -72,6 +72,17 @@ public class AgentController : MonoBehaviour
         }
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        GetHealthPoint();
+    }
+    public void GetHealthPoint()
+    {
+        healthPoints--;
+        if (healthPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 }
