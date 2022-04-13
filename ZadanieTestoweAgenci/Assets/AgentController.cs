@@ -14,55 +14,60 @@ public class AgentController : MonoBehaviour
         East,
         West
     }
+
     private void Start()
     {
-        StartCoroutine(Moving());   
-    }
-    IEnumerator Moving()
-    {
-
-        Move();
-        yield return new WaitForSeconds(moveCooldown);
         StartCoroutine(Moving());
     }
 
-    void Move()
+    IEnumerator Moving()
+    {
+        Vector3 randomDirection = RandomDirection();
+        while (IsOnBoard(randomDirection + transform.position) == false)
+        {
+            randomDirection = RandomDirection();
+        }
+
+        Vector3 tempAgentPosition = transform.position;
+
+        while (transform.position != randomDirection + tempAgentPosition)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, randomDirection + tempAgentPosition, Time.deltaTime);
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return new WaitForSeconds(moveCooldown);
+        StartCoroutine(Moving());
+    }
+    private Vector3 RandomDirection()
     {
         Directions randomDirection = (Directions)Random.Range(0, 4);
-        Vector3 newPosition = transform.position;
+        Vector3 newDirection = Vector3.zero;
 
         if (randomDirection == Directions.North)
         {
-            newPosition += new Vector3(0, 0, 1);
+            newDirection = new Vector3(0, 0, 1);
         }
         else if (randomDirection == Directions.South)
         {
-            newPosition += new Vector3(0, 0, -1);
+            newDirection = new Vector3(0, 0, -1);
         }
         else if (randomDirection == Directions.West)
         {
-            newPosition += new Vector3(-1, 0, 0);
+            newDirection = new Vector3(-1, 0, 0);
         }
         else if (randomDirection == Directions.East)
         {
-            newPosition += new Vector3(1, 0, 0);
+            newDirection = new Vector3(1, 0, 0);
         }
 
-        if (!IsOnBoard(newPosition))
-        {
-            Debug.Log("Agent want to move outside board's border");
-          Move();
-            return;
-        }
-
-        transform.position = newPosition;
-
+        return newDirection;
 
     }
 
     private bool IsOnBoard(Vector3 newPosition)
     {
-        if (newPosition.x<0||newPosition.z<0||newPosition.x>9||newPosition.z>9)
+        if (newPosition.x < 0 || newPosition.z < 0 || newPosition.x > 9 || newPosition.z > 9)
         {
             return false;
         }
@@ -76,6 +81,7 @@ public class AgentController : MonoBehaviour
     {
         GetHealthPoint();
     }
+
     public void GetHealthPoint()
     {
         healthPoints--;
