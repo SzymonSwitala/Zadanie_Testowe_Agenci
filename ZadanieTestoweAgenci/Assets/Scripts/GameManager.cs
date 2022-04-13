@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-   public Spawner spawner;
+    public Spawner spawner;
+    public Informations informations;
     private void Start()
     {
         spawner.StartSpawning();

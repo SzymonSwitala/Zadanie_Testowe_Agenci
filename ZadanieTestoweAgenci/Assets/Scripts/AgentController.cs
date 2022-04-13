@@ -17,9 +17,21 @@ public class AgentController : MonoBehaviour
 
     private void Start()
     {
+        agentName = RandomName();
         StartCoroutine(Moving());
+    
     }
-
+    private string RandomName()
+    {
+        string[] firstNames = new string[] { "Hercules", "Bob", "Spider", "Geralt", "Garfield", "Superman", "Marco" };
+        int firstNameIndex = Random.Range(0, firstNames.Length);
+        string firstName = firstNames[firstNameIndex];
+        string[] lastNames = new string[] { "Smith", "White", "Polo", "Kowalski", "Iron", "Goodman" };
+        int lastNameIndex = Random.Range(0, lastNames.Length);
+        string lastName = lastNames[lastNameIndex];
+        string ranomName = firstName + " " + lastName;
+        return ranomName;
+    }
     IEnumerator Moving()
     {
         Vector3 randomDirection = RandomDirection();
@@ -91,4 +103,12 @@ public class AgentController : MonoBehaviour
         }
     }
 
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Selected " + agentName);
+            GameManager.Instance.informations.Set(agentName, healthPoints);
+        }
+    }
 }
