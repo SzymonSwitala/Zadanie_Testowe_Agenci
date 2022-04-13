@@ -22,4 +22,21 @@ public class GameManager : MonoBehaviour
     {
         spawner.StartSpawning();
     }
+    private void Update()
+    {
+        Inputs();
+
+
+    }
+    private void Inputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            informations.UnselectAgent();
+        }
+    }
 }

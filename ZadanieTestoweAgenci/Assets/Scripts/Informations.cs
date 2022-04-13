@@ -20,6 +20,10 @@ public class Informations : MonoBehaviour
     }
     public void UnselectAgent()
     {
+        if (currentSelectedAgent==null)
+        {
+            return;
+        }
         currentSelectedAgent.Unselect();
         currentSelectedAgent = null;
     }
@@ -30,10 +34,7 @@ public class Informations : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            UnselectAgent();
-        }
+     
 
         if (currentSelectedAgent != null)
         {
